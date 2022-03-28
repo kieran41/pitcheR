@@ -10,7 +10,6 @@ source("R/contact_location_heatmap.R")
 
 deGrom<- read.csv("inst/extdata/deGrom.csv")
 
-plot(create_grid(file = deGrom))
 
 file = deGrom
 
@@ -31,7 +30,9 @@ y<- seq(from=2.55-.38*num.y.min+.19, to=.38*num.y.max+.19, by=.38)
 grid <-expand.grid(X=x, Y=y)
 
 
-grid<- create_grid(file=deGrom, sq = 5)
+grid<- create_grid(file=deGrom, sq = 1)
+
+
 
 ggplot(aes(x=X,y=Y ), data=grid)+
   geom_point()+
@@ -41,7 +42,7 @@ ggplot(aes(x=X,y=Y ), data=grid)+
 
 
 
-locations <-as.data.frame( matrix(c(file$plate_x, file$plate_z), nrow = length(file$plate_x), ncol = 2, byrow=F))
+locations <- matrix(c(file$plate_x, file$plate_z), nrow = length(file$plate_x), ncol = 2, byrow=F)
 
 
 plot(grid, col="red")

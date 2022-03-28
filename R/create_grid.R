@@ -25,7 +25,7 @@ create_grid<-function(file= NULL, sq=5){
   num.y.min <- abs(((2.55-min.y) %/% unit.y)+1)
 
   x<- seq(from=-unit.x*num.x.min+(unit.x/2), to=unit.x*num.x.max+(unit.x/2), by=unit.x)
-  y<- seq(from=2.55-unit.y*num.y.min+(unit.y/2), to=unit.y*num.y.max+(unit.y/2), by=unit.y)
+  y<- seq(from=2.55-unit.y*num.y.min-(unit.y/2), to=unit.y*num.y.max+(unit.y/2), by=unit.y)
   grid <-expand.grid(X=x, Y=y)
   return(grid)
 }
