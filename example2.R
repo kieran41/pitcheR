@@ -31,7 +31,7 @@ y<- seq(from=2.55-.38*num.y.min+.19, to=.38*num.y.max+.19, by=.38)
 grid <-expand.grid(X=x, Y=y)
 
 
-grid<- create_grid(file=deGrom, sq = 11)
+grid<- create_grid(file=deGrom, sq = 5)
 
 ggplot(aes(x=X,y=Y ), data=grid)+
   geom_point()+
@@ -41,15 +41,14 @@ ggplot(aes(x=X,y=Y ), data=grid)+
 
 
 
-locations <- matrix(c(file$plate_x, file$plate_z), nrow = length(file$plate_x), ncol = 2, byrow=F)
+locations <-as.data.frame( matrix(c(file$plate_x, file$plate_z), nrow = length(file$plate_x), ncol = 2, byrow=F))
 
 
 plot(grid, col="red")
 points(locations)
 
 ggplot(aes(x=plate_x,y=plate_z ), data=file)+
-  geom_bin2d()+
+  geom_bin2d(bins = 15)+
   add_zone()
-
 
 
