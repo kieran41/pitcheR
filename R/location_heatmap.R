@@ -10,7 +10,7 @@
 #'
 #' @export
 
-location_heatmap<- function(file =NULL, by_pitch_type = TRUE){
+location_heatmap<- function(file =NULL, by_pitch_type = TRUE, sq=3){
 
   if(is.null(file)){
     file = system.file("extdata" ,"deGrom.csv", package = "pitcheR")
@@ -20,6 +20,14 @@ location_heatmap<- function(file =NULL, by_pitch_type = TRUE){
 
   low.color<- "gray"
   high.color<- "darkslateblue"
+
+  location.information <- count_points(file = file, sq=sq)
+  loc.matrix <- location.information[[1]]
+  x.list <- location.information[[2]]
+  y.list <- location.information[[3]]
+
+  data <-expand.grid(X=x.list, Y=y.list)
+  data$count <- loc.matrix
 
   if(by_pitch_type==T){
   graphic <- file %>%
@@ -32,6 +40,8 @@ location_heatmap<- function(file =NULL, by_pitch_type = TRUE){
   }
 
   if(by_pitch_type==F){
+    graphic.test<- ggplot(aes())
+
     graphic <- file %>%
       ggplot(aes(x= plate_x, y= plate_z))+
       geom_hex(bins = 10)+

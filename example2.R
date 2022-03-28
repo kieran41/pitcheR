@@ -12,10 +12,40 @@ source("R/contact_location_heatmap.R")
 deGrom<- read.csv("inst/extdata/deGrom.csv")
 wheeler <- read.csv("inst/extdata/WheelerZack.csv")
 
-function.matrix.W <- count_points(file=wheeler, sq=5 )
-function.matrix.D <- count_points(file=deGrom, sq=1 )
+location.information <- count_points(file = wheeler, sq=15)
+loc.matrix <- location.information[[1]]
+x.list <- location.information[[2]]
+y.list <- location.information[[3]]
+
+x.update<-c()
+for(i in 1:length(x.list)-1){
+  x.update[i] <- (x.list[i]+x.list[i+1])/2
+}
+
+y.update<-c()
+for(i in 1:length(y.list)-1){
+  y.update[i] <- (y.list[i]+y.list[i+1])/2
+}
 
 
+data <-expand.grid(X=x.update, Y=y.update)
+count.order <- as.vector(t(loc.matrix[c(dim(loc.matrix)[1]:1),]))
+
+dim(loc.matrix)[1]-length(y.update)
+
+data$count <- count.order
+
+
+
+
+ggplot(data, aes(X,Y,fill = count))+
+  geom_tile()
+
+
+
+
+max(deGrom$plate_x)
+min(deGrom$plate_z)
 
 
 grid<- create_grid(file=deGrom, sq = 1)[[1]]

@@ -2,6 +2,8 @@
 
 export(add_zone)
 export(contact_location_heatmap)
+export(count_points)
+export(create_grid)
 export(location_heatmap)
 import(dplyr)
 import(ggplot2)

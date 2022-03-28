@@ -11,6 +11,8 @@ count_points<-function(file = NULL, sq = NULL){
 cell.geom<-create_grid(file = file, sq = sq)[[1]]
 dim.x<-create_grid(file = file, sq = sq)[[2]]
 dim.y<-create_grid(file = file, sq = sq)[[3]]
+x<-create_grid(file = file, sq = sq)[[4]]
+y<-create_grid(file = file, sq = sq)[[5]]
 
 counts <- matrix(1:dim.y*dim.x, nrow = dim.y, ncol = dim.x)
 
@@ -26,6 +28,6 @@ for(i in 1:dim.x){
     }
   }
 
-  return(counts)
+  return(list(counts,x,y))
 
 }

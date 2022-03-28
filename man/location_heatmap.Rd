@@ -4,10 +4,10 @@
 \alias{location_heatmap}
 \title{Take a statcast data set and created a heatmap of pitch locations}
 \usage{
-location_heatmap(file = NULL, by_pitch_type = TRUE)
+location_heatmap(file = NULL, by_pitch_type = TRUE, sq = 3)
 }
 \arguments{
-\item{file}{statcast data file}
+\item{file}{statcast file}
 
 \item{by_pitch_type}{boolean to facet by pitch type, default is TRUE}
 }
