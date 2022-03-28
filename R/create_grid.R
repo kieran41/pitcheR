@@ -8,7 +8,7 @@
 
 create_grid<-function(file= NULL, sq=5){
 
-
+  #Creating the grid coordinates
   unit.x<-(.85--.85)/sq
   unit.y<-(3.5-1.6)/sq
 
@@ -21,12 +21,40 @@ create_grid<-function(file= NULL, sq=5){
   num.x.max <- (max.x %/% unit.x)+1
   num.y.max <- (max.y %/% unit.y)+1
 
-  num.x.min <- abs((min.x %/% unit.x)-1)
+  num.x.min <- abs((min.x %/% unit.x))
   num.y.min <- abs(((2.55-min.y) %/% unit.y)+1)
 
   x<- seq(from=-unit.x*num.x.min+(unit.x/2), to=unit.x*num.x.max+(unit.x/2), by=unit.x)
   y<- seq(from=2.55-unit.y*num.y.min-(unit.y/2), to=unit.y*num.y.max+(unit.y/2), by=unit.y)
   grid <-expand.grid(X=x, Y=y)
-  return(grid)
+
+  #Defining the grid cells
+
+  grid.min.x <- min(grid$X)
+  grid.min.y <- min(grid$Y)
+
+  dim.x <- num.x.max+num.x.min -1
+  dim.y <- num.y.max+num.y.min -1
+
+
+  cell.geom<-array(data=NA,dim=c(dim.x,dim.y, 2,2,2))
+
+
+  for(i in 1:dim.x){
+    for(j in 1:dim.y){
+      cell.geom[i,j,,,] = array(data=c(grid.min.x+(i-1)*unit.x,
+                                       grid.min.x+(i-1)*unit.x,
+                                       grid.min.x+(i)*unit.x,
+                                       grid.min.x+(i)*unit.x,
+                                       grid.min.y+(j-1)*unit.y,
+                                       grid.min.y+(j-1)*unit.y,
+                                       grid.min.y+(j)*unit.y,
+                                       grid.min.y+(j)*unit.y)
+                                , dim=c(2,2,2))
+    }
+  }
+
+
+  return(list(cell.geom, dim.x, dim.y))
 }
 
