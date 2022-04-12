@@ -9,13 +9,24 @@ source("R/count_points.R")
 source("R/location_heatmap.R")
 source("R/contact_location_heatmap.R")
 
+source("R/custom_heatmap.R")
+
 deGrom<- read.csv("inst/extdata/deGrom.csv")
 wheeler <- read.csv("inst/extdata/WheelerZack.csv")
 
 names(deGrom)[1] <- "pitch_type"
 
+names(wheeler)[1] <- "pitch_type"
 
-location_heatmap(deGrom)
+location_heatmap(wheeler)
+
+
+graphics.degrom<-custom_heatmap(file = deGrom , sq=3)
+
+graphics.degrom[[1]]
+graphics.degrom[[2]]
+graphics.degrom[[3]]
+graphics.degrom[[4]]
 
 
 deGrom %>%
@@ -86,12 +97,29 @@ data[[1]]$count <- count.order[[1]]
 
 data$count <- count.order
 
+low.color <- "blue"
+high.color <- "red"
+
+df1 <- data[[1]]
+
+data[[2]]
+
+df1 <- as.data.frame(data[[1]])
+unlist(df1$X)
 
 
-graphic.test<-ggplot(data)+
-  geom_tile(aes(X,Y, fill = count))+
-  scale_fill_gradient(low=low.color,high=high.color) +
+graphic.test <- list()
+for(i in 1:length(data)){
+graphic.test[[i]]<-data[[i]] %>% ggplot()+
+  geom_tile(aes(x=unlist(X),y = unlist(Y), fill = count))+
+  scale_fill_gradient(low=low.color, high=high.color) +
+  labs(title = "Location Heatmap by Pitch",
+       x = "Location from Catcher's Perspective (ft)",
+       y = "Location off the Ground (ft)")+
   add_zone()
+}
+
+graphic.test[[3]]
 
 
 data <-expand.grid(X=x.update, Y=y.update)

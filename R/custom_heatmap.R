@@ -69,6 +69,21 @@ custom_heatmap<- function(file =NULL, by_pitch_type = TRUE, sq=3){
       count.order[[i]] <- as.vector(t(loc.matrix[[i]][c(dim(loc.matrix[[i]])[1]:1),]))
     }
 
+    for(i in 1:length(count.order)){
+      data[[i]]$count <- count.order[[i]]
+    }
+
+    graphic.test <- list()
+    for(i in 1:length(data)){
+      graphic.test[[i]]<-data[[i]] %>% ggplot()+
+        geom_tile(aes(x=unlist(X),y = unlist(Y), fill = count))+
+        scale_fill_gradient(low=low.color, high=high.color) +
+        labs(title = "Location Heatmap by Pitch",
+             x = "Location from Catcher's Perspective (ft)",
+             y = "Location off the Ground (ft)")+
+        add_zone()
+    }
+
 
 
     if(by_pitch_type==F){
@@ -111,3 +126,5 @@ custom_heatmap<- function(file =NULL, by_pitch_type = TRUE, sq=3){
     return(graphic.test)
 
   }
+
+}
