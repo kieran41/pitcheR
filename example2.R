@@ -12,7 +12,108 @@ source("R/contact_location_heatmap.R")
 deGrom<- read.csv("inst/extdata/deGrom.csv")
 wheeler <- read.csv("inst/extdata/WheelerZack.csv")
 
-location.information <- count_points(file = wheeler, sq=15)
+names(deGrom)[1] <- "pitch_type"
+
+
+location_heatmap(deGrom)
+
+
+deGrom %>%
+  group_by(pitch_type) %>%
+  summarize(n=n())
+
+
+deGrom_list <- split(deGrom, f = deGrom$pitch_type)
+
+deGrom_list <- deGrom_list[-2]
+
+loc.matrix<-list()
+location.information <- list()
+x.list <- list()
+y.list<- list()
+
+
+for(i in 1:length(deGrom_list)){
+  location.information[[i]] <- count_points(file = deGrom_list[[i]], sq=1)
+}
+
+for(i in 1:length(location.information)){
+  loc.matrix[[i]] <- location.information[[i]][[1]]
+  x.list[[i]] <- location.information[[i]][[2]]
+  y.list[[i]]  <- location.information[[i]][[3]]
+}
+
+x.list[[1]][1]
+
+x.update[[1]]<-(x.list[[1]][1]+x.list[[1]][1+1])/2
+
+x.update<-list()
+temp <- list()
+for(i in 1:length(x.list)){
+  for(j in 1:length(x.list[[i]])-1){
+    temp[j] <- (x.list[[i]][j]+x.list[[i]][j+1])/2
+
+  }
+  x.update[[i]] <- temp
+}
+
+
+y.update<-list()
+temp <- list()
+for(i in 1:length(y.list)){
+  for(j in 1:length(y.list[[i]])-1){
+    temp[j] <- (y.list[[i]][j]+y.list[[i]][j+1])/2
+
+  }
+  y.update[[i]] <- temp
+}
+
+data<-list()
+count.order <- list()
+
+for(i in 1:length(deGrom_list)){
+data[[i]] <-expand.grid(X=x.update[[i]], Y=y.update[[i]])
+count.order[[i]] <- as.vector(t(loc.matrix[[i]][c(dim(loc.matrix[[i]])[1]:1),]))
+
+}
+
+for(i in 1:length(count.order)){
+  data[[i]]$count <- count.order[[i]]
+}
+
+
+data[[1]]$count <- count.order[[1]]
+
+data$count <- count.order
+
+
+
+graphic.test<-ggplot(data)+
+  geom_tile(aes(X,Y, fill = count))+
+  scale_fill_gradient(low=low.color,high=high.color) +
+  add_zone()
+
+
+data <-expand.grid(X=x.update, Y=y.update)
+count.order <- as.vector(t(loc.matrix[c(dim(loc.matrix)[1]:1),]))
+
+dim(loc.matrix)[1]-length(y.update)
+
+data$count <- count.order
+
+
+
+graphic.test<-ggplot(data)+
+  geom_tile(aes(X,Y, fill = count))+
+  scale_fill_gradient(low=low.color,high=high.color) +
+  add_zone()
+
+location.information[2]
+
+
+location_heatmap(file=wheeler, by_pitch_type = F, sq =15)
+
+location.information <- count_points(file = wheeler, sq=12)
 loc.matrix <- location.information[[1]]
 x.list <- location.information[[2]]
 y.list <- location.information[[3]]
@@ -37,9 +138,9 @@ data$count <- count.order
 
 
 
-
-ggplot(data, aes(X,Y,fill = count))+
-  geom_tile()
+ggplot(data)+
+  geom_tile(aes(X,Y, fill = count, size = 2))+
+  add_zone()
 
 
 
