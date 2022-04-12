@@ -43,6 +43,9 @@ contact_location_heatmap<- function(file =NULL, by_pitch_type = TRUE, hit.status
       geom_hex(bins = 10)+
       scale_fill_gradient(low=low.color,high=high.color,trans="log10") +
       add_zone()+
+      labs(title = "Location Heatmap by Pitch",
+           x = "Location from Catcher's Perspective (ft)",
+           y = "Location off the Ground (ft)")+
       facet_wrap(~pitch_type)
   }
 
@@ -51,6 +54,9 @@ contact_location_heatmap<- function(file =NULL, by_pitch_type = TRUE, hit.status
       ggplot(aes(x= plate_x, y= plate_z))+
       geom_hex(bins = 10)+
       scale_fill_gradient(low=low.color,high=high.color,trans="log10") +
+      labs(title = "Location Heatmap by Pitch",
+           x = "Location from Catcher's Perspective (ft)",
+           y = "Location off the Ground (ft)")+
       add_zone()
   }
 
