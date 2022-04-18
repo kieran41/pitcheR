@@ -1,6 +1,6 @@
 Package: pitcheR
 Type: Package
-Title: What the Package Does (Title Case)
+Title: A Package for Pitcher Summary Graphics
 Version: 0.1.0
 Authors@R: 
     person("Kieran", "Liming", , "kliming@iastate.edu", role = c("aut", "cre"),
@@ -10,7 +10,7 @@ Authors@R:
     person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Maintainer: The package maintainer <yourself@somewhere.net>
-Description: Creates graphics for pitcher data
+Description: Creates graphics and summaries for pitcher Statcast data
 License: MIT License
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

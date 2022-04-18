@@ -20,8 +20,10 @@ names(wheeler)[1] <- "pitch_type"
 
 location_heatmap(wheeler)
 
+degrom.no.cut <- deGrom %>%
+  filter(pitch_type != "CU")
 
-graphics.degrom<-custom_heatmap(file = deGrom , sq=3)
+graphics.degrom<-custom_heatmap(file = deGrom , sq=1)
 
 graphics.degrom[[1]]
 graphics.degrom[[2]]
@@ -45,7 +47,7 @@ y.list<- list()
 
 
 for(i in 1:length(deGrom_list)){
-  location.information[[i]] <- count_points(file = deGrom_list[[i]], sq=1)
+  location.information[[i]] <- count_points(file = deGrom_list[[i]], sq=3)
 }
 
 for(i in 1:length(location.information)){
@@ -87,6 +89,9 @@ data[[i]] <-expand.grid(X=x.update[[i]], Y=y.update[[i]])
 count.order[[i]] <- as.vector(t(loc.matrix[[i]][c(dim(loc.matrix[[i]])[1]:1),]))
 
 }
+
+length(count.order[[2]])
+data[[2]]
 
 for(i in 1:length(count.order)){
   data[[i]]$count <- count.order[[i]]
