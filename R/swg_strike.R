@@ -3,7 +3,7 @@
 ##for the pitch type
 
 swg_strike <- function(file){
-  player_table <- file
+  player_table <- file %>%
   group_by(pitch_type) %>%
     summarise(swginging_strike_per = length(which(description == "swinging_strike" | description == "swinging_strike_blocked"))/(length(which(description == "foul" | description == "hit_into_play" | description == "foul_tip" | description == "swinging_strike" | description == "swinging_strike_blocked"))),
               average_velo = mean(release_speed, na.rm = T),
