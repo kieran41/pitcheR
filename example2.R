@@ -23,7 +23,14 @@ location_heatmap(wheeler)
 degrom.no.cut <- deGrom %>%
   filter(pitch_type != "CU")
 
-graphics.degrom<-custom_heatmap(file = deGrom , sq=1)
+graphics.degrom<-custom_heatmap(file = deGrom, by_pitch_type = F)
+
+create_grid(deGrom)
+count_points(deGrom)
+
+
+
+
 
 graphics.degrom[[1]]
 graphics.degrom[[2]]

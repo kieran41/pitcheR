@@ -1,7 +1,6 @@
 #' Take a statcast data set and created a heatmap of pitch locations
 #'
 #' @param file statcast file
-#' @param by_pitch_type boolean to facet by pitch type, default is TRUE
 #'
 #' @import ggplot2
 #' @import dplyr
@@ -10,86 +9,14 @@
 #'
 #' @export
 
-custom_heatmap<- function(file =NULL, by_pitch_type = TRUE, sq=3){
-
-  if(is.null(file)){
-    file = system.file("extdata" ,"deGrom.csv", package = "pitcheR")
-    warning('default file names')
-  }
+custom_heatmap<- function(file =NULL){
 
 
-  low.color<- "lightblue1"
-  high.color<- "black"
-
-
-
-  if(by_pitch_type==T){
-
-    file_list <- split(file, f = file$pitch_type)
-
-    loc.matrix<-list()
-    location.information <- list()
-    x.list <- list()
-    y.list<- list()
-
-
-    for(i in 1:length(file_list)){
-      location.information[[i]] <- count_points(file = file_list[[i]], sq=sq)
-    }
-
-    for(i in 1:length(location.information)){
-      loc.matrix[[i]] <- location.information[[i]][[1]]
-      x.list[[i]] <- location.information[[i]][[2]]
-      y.list[[i]]  <- location.information[[i]][[3]]
-    }
-
-    x.update<-list()
-    temp <- list()
-    for(i in 1:length(x.list)){
-      for(j in 1:length(x.list[[i]])-1){
-        temp[j] <- (x.list[[i]][j]+x.list[[i]][j+1])/2
-
-      }
-      x.update[[i]] <- temp
-    }
-
-
-    y.update<-list()
-    temp <- list()
-    for(i in 1:length(y.list)){
-      for(j in 1:length(y.list[[i]])-1){
-        temp[j] <- (y.list[[i]][j]+y.list[[i]][j+1])/2
-
-      }
-      y.update[[i]] <- temp
-    }
-
-    for(i in 1:length(file_list)){
-      data[[i]] <-expand.grid(X=x.update[[i]], Y=y.update[[i]])
-      count.order[[i]] <- as.vector(t(loc.matrix[[i]][c(dim(loc.matrix[[i]])[1]:1),]))
-    }
-
-    for(i in 1:length(count.order)){
-      data[[i]]$count <- count.order[[i]]
-    }
-
-    graphic.test <- list()
-    for(i in 1:length(data)){
-      graphic.test[[i]]<-data[[i]] %>% ggplot()+
-        geom_tile(aes(x=unlist(X),y = unlist(Y), fill = count))+
-        scale_fill_gradient(low=low.color, high=high.color) +
-        labs(title = "Location Heatmap by Pitch",
-             x = "Location from Catcher's Perspective (ft)",
-             y = "Location off the Ground (ft)")+
-        add_zone()
-    }
-
-
-
-    if(by_pitch_type==F){
-
-      location.information <- count_points(file = file, sq=sq)
+      location.information <- count_points(file = file)
       loc.matrix <- location.information[[1]]
+
+      loc.matrix <- loc.matrix[-1,]
+
       x.list <- location.information[[2]]
       y.list <- location.information[[3]]
 
@@ -104,27 +31,23 @@ custom_heatmap<- function(file =NULL, by_pitch_type = TRUE, sq=3){
       }
 
 
-      data <-expand.grid(X=x.update, Y=y.update)
-      count.order <- as.vector(t(loc.matrix[c(dim(loc.matrix)[1]:1),]))
-
-      data$count <- count.order
+      colnames(loc.matrix) <- x.update
+      rownames(loc.matrix) <- y.update
 
 
+      longData <- melt(loc.matrix)
 
-      graphic.test<-ggplot(data)+
-        geom_tile(aes(X,Y, fill = count))+
-        scale_fill_gradient(low=low.color,high=high.color) +
+      graphic.test <- ggplot(longData, aes(x = Var2, y = Var1)) +
+                geom_raster(aes(fill=value)) +
+                scale_fill_gradient(low="grey90", high="red") +
+                labs(x="Location (Catcher's Perspective ft)", y="Height (ft)", title="Location Heatmap of Pitches Thrown") +
+                theme_bw() + theme(axis.text.x=element_text(size=9, angle=0, vjust=0.3),
+                           axis.text.y=element_text(size=9),
+                           plot.title=element_text(size=11))+
         add_zone()
-
-      graphic <- file %>%
-        ggplot(aes(x= plate_x, y= plate_z))+
-        geom_hex(bins = 10)+
-        scale_fill_gradient(low=low.color,high=high.color,trans="log10") +
-        add_zone()
-    }
 
     return(graphic.test)
 
-  }
+
 
 }
