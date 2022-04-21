@@ -18,11 +18,11 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Imports: 
-dplyr,
-tidyverse,
-ggplot2,
-raster,
-baseballr
+    dplyr,
+    tidyverse,
+    ggplot2,
+    raster,
+    baseballr
 Depends: 
     R (>= 2.10)
 LazyData: true

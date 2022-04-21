@@ -4,7 +4,7 @@
 \alias{count_points}
 \title{Counts Points in cell geom}
 \usage{
-count_points(file = NULL, sq = NULL)
+count_points(file = NULL)
 }
 \description{
 Counts Points in cell geom

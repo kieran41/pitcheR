@@ -4,7 +4,7 @@
 \alias{create_grid}
 \title{Creates tile layout for heatmaps}
 \usage{
-create_grid(file = NULL, sq = 5)
+create_grid(file = NULL)
 }
 \description{
 Creates tile layout for heatmaps

@@ -1,4 +1,4 @@
-#' Take a statcast data set and created a heatmap of pitch locations
+#' Take a statcast data set and created a heatmap of pitch locations that are specific to the strikezone (always 3x3 in the zone)
 #'
 #' @param file statcast file
 #'

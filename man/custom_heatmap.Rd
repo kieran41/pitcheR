@@ -4,12 +4,10 @@
 \alias{custom_heatmap}
 \title{Take a statcast data set and created a heatmap of pitch locations}
 \usage{
-custom_heatmap(file = NULL, by_pitch_type = TRUE, sq = 3)
+custom_heatmap(file = NULL)
 }
 \arguments{
 \item{file}{statcast file}
-
-\item{by_pitch_type}{boolean to facet by pitch type, default is TRUE}
 }
 \value{
 ggplot graphic
