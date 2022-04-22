@@ -22,7 +22,8 @@ Imports:
     tidyverse,
     ggplot2,
     raster,
-    baseballr
+    baseballr,
+    reshape2
 Depends: 
     R (>= 2.10)
 LazyData: true
