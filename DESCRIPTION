@@ -22,7 +22,6 @@ Imports:
     tidyverse,
     ggplot2,
     raster,
-    baseballr,
     reshape2,
     stringr,
     lubridate
