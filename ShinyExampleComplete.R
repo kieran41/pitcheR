@@ -38,7 +38,15 @@ contact_location_heatmap(file = wheeler)
 
 custom_heatmap(file = deGrom)
 
-velo_bp(file = deGrom)
+velo_bp(file = wheeler)
+
+break_func(file = wheeler)
+
+break_func(file = deGrom)
+
+wheeler %>%
+  group_by(pitch_type) %>%
+  summarize(n = n())
 
 
 ohtani420 <- read.csv("C:/Users/Kieran/Downloads/savant_data (3).csv", header=T)
