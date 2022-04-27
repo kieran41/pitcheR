@@ -5,6 +5,7 @@
 #' @import ggplot2
 #'
 
+globalVariables(c("pfx_x", "pfx_z", "pitch_type", "average_x", "average_z"))
 
 create_grid<-function(file= NULL){
 

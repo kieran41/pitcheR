@@ -1,6 +1,6 @@
 #create a function that summarizes player stats (per player)
 
-
+globalVariables(c("pfx_x", "pfx_z", "pitch_type", "average_x", "average_z"))
 
 break_func <- function(file = NULL){
 
