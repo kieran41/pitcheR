@@ -15,7 +15,7 @@ velo_bp <- function(file = NULL) {
     facet_wrap(~ as.factor(pitch_type), ncol = 1) +
     labs(x = "Release Speed", y = "Density")}
 
-velo_bp(deGrom)
+
 
 
 
