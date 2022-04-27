@@ -19,7 +19,7 @@ contact_location_heatmap<- function(file =NULL, by_pitch_type = TRUE, hit.status
     warning('default file names')
   }
 
-  if(!as.double(min.exit.velocity)){
+  if(!as.numeric(min.exit.velocity)){
     warning("min.exit.velocity should be numeric value.")
     #return(NA)
   }
@@ -27,6 +27,10 @@ contact_location_heatmap<- function(file =NULL, by_pitch_type = TRUE, hit.status
 
   low.color<- "gray"
   high.color<- "darkred"
+
+  first <- str_trim(str_split(file$player_name[1], pattern = ",")[[1]][2])
+  last <- str_split(file$player_name[1], pattern = ",")[[1]][1]
+
 
   file <- file %>%
     filter(description == "hit_into_play" , launch_speed >= min.exit.velocity)
@@ -43,7 +47,7 @@ contact_location_heatmap<- function(file =NULL, by_pitch_type = TRUE, hit.status
       geom_hex(bins = 10)+
       scale_fill_gradient(low=low.color,high=high.color,trans="log10") +
       add_zone()+
-      labs(title = "Location Heatmap by Pitch",
+      labs(title = paste("Location Heatmap by Pitch from", first, last),
            x = "Location from Catcher's Perspective (ft)",
            y = "Location off the Ground (ft)")+
       facet_wrap(~pitch_type)
@@ -54,7 +58,7 @@ contact_location_heatmap<- function(file =NULL, by_pitch_type = TRUE, hit.status
       ggplot(aes(x= plate_x, y= plate_z))+
       geom_hex(bins = 10)+
       scale_fill_gradient(low=low.color,high=high.color,trans="log10") +
-      labs(title = "Location Heatmap by Pitch",
+      labs(title = paste("Location Heatmap by Pitch from", first, last),
            x = "Location from Catcher's Perspective (ft)",
            y = "Location off the Ground (ft)")+
       add_zone()

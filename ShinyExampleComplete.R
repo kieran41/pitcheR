@@ -4,15 +4,19 @@ library(dplyr)
 library(baseballr)
 library(reshape2)
 library(devtools)
+library(stringr)
+library(lubridate)
 
 
 source("R/add_zone.R")
 source("R/create_grid.R")
 source("R/count_points.R")
 source("R/location_heatmap.R")
+source("R/contact_location_heatmap.R")
 source("R/swg_strike.R")
 source("R/velo_time.R")
 source("R/custom_heatmap.R")
+source("R/velo_by_pitch_type.R")
 
 devtools::install_github("BillPetti/baseballr")
 
@@ -23,7 +27,7 @@ load(file='data/wheeler.rda')
 names(deGrom)[1] <- "pitch_type"
 names(wheeler)[1] <- "pitch_type"
 
-velo_time(pitcher_name=deGrom)
+velo_time(file = deGrom)
 
 swg_strike(file= wheeler)
 

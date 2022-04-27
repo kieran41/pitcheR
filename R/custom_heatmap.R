@@ -12,6 +12,10 @@
 custom_heatmap<- function(file =NULL){
 
 
+  first <- str_trim(str_split(file$player_name[1], pattern = ",")[[1]][2])
+  last <- str_split(file$player_name[1], pattern = ",")[[1]][1]
+
+
       location.information <- count_points(file = file)
       loc.matrix <- location.information[[1]]
 
@@ -40,7 +44,8 @@ custom_heatmap<- function(file =NULL){
       graphic.test <- ggplot(longData, aes(x = Var2, y = Var1)) +
                 geom_raster(aes(fill=value)) +
                 scale_fill_gradient(low="grey90", high="red") +
-                labs(x="Location (Catcher's Perspective ft)", y="Height (ft)", title="Location Heatmap of Pitches Thrown") +
+                labs(x="Location (Catcher's Perspective ft)", y="Height (ft)",
+                     title = paste("Location Heatmap by Pitch from", first, last)) +
                 theme_bw() + theme(axis.text.x=element_text(size=9, angle=0, vjust=0.3),
                            axis.text.y=element_text(size=9),
                            plot.title=element_text(size=11))+
