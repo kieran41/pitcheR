@@ -15,7 +15,7 @@ maxz = max(file$pfx_z)
   file%>%
     group_by(pitch_type)%>%
     summarise(average_x = mean(pfx_x,na.rm=TRUE), average_z = mean(pfx_z,na.rm=TRUE))%>%
-    ggplot(aes(x= average_x, y = average_z ,color = pitch_type))+geom_point()+geom_segment(aes( xend=0, yend=0))+xlim(minx,maxx)+ylim(minz,maxz)+xlab("Horizontal Break")+ylab("Verticle Break")+labs(title = "Average Break")
+    ggplot(aes(x= average_x, y = average_z ,color = pitch_type))+geom_point()+geom_segment(aes( xend=0, yend=0))+xlim(minx,maxx)+ylim(minz,maxz)+xlab("Horizontal Break (feet)")+ylab("Verticle Break (feet)")+labs(title = "Average Break")
 
 
 
