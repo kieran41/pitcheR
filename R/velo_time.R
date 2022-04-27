@@ -1,13 +1,9 @@
-library(baseballr)
-
 ##function to graph game by game average velocity of specified pitch type (default is fastball)
-velo_time <- function(pitcher_name, pitch = "FF"){
-  last <- str_split(pitcher_name, " ")[[1]][2]
-  first <- str_split(pitcher_name, " ")[[1]][1]
-  id <- playerid_lookup(last_name = last, first_name = first)$mlbam_id
-  player <- baseballr::statcast_search_pitchers(start_date = "2021-04-01",end_date = "2021-10-02", pitcherid = id)
+velo_time <- function(file, pitch = "FF"){
+  first <- str_trim(str_split(file$player_name[1], pattern = ",")[[1]][2])
+  last <- str_split(file$player_name[1], pattern = ",")[[1]][1]
 
-  velo_graph <- player %>%
+  velo_graph <- file %>%
     mutate(game_date == as_date(game_date)) %>%
     filter(pitch_type == pitch) %>%
     group_by(game_date) %>%
@@ -21,4 +17,5 @@ velo_time <- function(pitcher_name, pitch = "FF"){
          title = paste("Average Velocity of", pitch, "Per Game for", first, last))
   return(velo_graph)
 }
+
 
