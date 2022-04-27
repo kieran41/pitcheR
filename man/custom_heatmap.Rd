@@ -2,7 +2,7 @@
 % Please edit documentation in R/custom_heatmap.R
 \name{custom_heatmap}
 \alias{custom_heatmap}
-\title{Take a statcast data set and created a heatmap of pitch locations}
+\title{Take a statcast data set and created a heatmap of pitch locations that are specific to the strikezone (always 3x3 in the zone)}
 \usage{
 custom_heatmap(file = NULL)
 }
@@ -13,5 +13,5 @@ custom_heatmap(file = NULL)
 ggplot graphic
 }
 \description{
-Take a statcast data set and created a heatmap of pitch locations
+Take a statcast data set and created a heatmap of pitch locations that are specific to the strikezone (always 3x3 in the zone)
 }
