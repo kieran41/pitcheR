@@ -8,7 +8,7 @@
 #' @return ggplot graphic
 #'
 #' @export
-velo_bp <- function(player) {
+velo_bp <- function(file = NULL) {
   player %>%
     ggplot(aes(x = release_speed))+
     geom_density(aes(fill = pitch_type)) +
