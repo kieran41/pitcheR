@@ -9,7 +9,7 @@
 #'
 #' @export
 velo_bp <- function(file = NULL) {
-  player %>%
+  file %>%
     ggplot(aes(x = release_speed))+
     geom_density(aes(fill = pitch_type)) +
     facet_wrap(~ as.factor(pitch_type), ncol = 1) +

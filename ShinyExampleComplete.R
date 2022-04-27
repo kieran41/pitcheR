@@ -17,6 +17,7 @@ source("R/swg_strike.R")
 source("R/velo_time.R")
 source("R/custom_heatmap.R")
 source("R/velo_by_pitch_type.R")
+source("R/break_summary.R")
 
 devtools::install_github("BillPetti/baseballr")
 
@@ -36,6 +37,8 @@ location_heatmap(file = wheeler)
 contact_location_heatmap(file = wheeler)
 
 custom_heatmap(file = deGrom)
+
+velo_bp(file = deGrom)
 
 
 ohtani420 <- read.csv("C:/Users/Kieran/Downloads/savant_data (3).csv", header=T)
