@@ -13,7 +13,7 @@ velo_bp <- function(file = NULL) {
     ggplot(aes(x = release_speed))+
     geom_density(aes(fill = pitch_type)) +
     facet_wrap(~ as.factor(pitch_type), ncol = 1) +
-    labs(x = "Release Speed", y = "Density")}
+    labs(x = "Release Speed (mph)", y = "Density")}
 
 
 
