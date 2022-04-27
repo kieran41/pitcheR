@@ -16,11 +16,12 @@ source("R/custom_heatmap.R")
 
 devtools::install_github("BillPetti/baseballr")
 
-
+#### Read Data ###
+load(file='data/deGrom.rda')
+load(file='data/wheeler.rda')
 
 names(deGrom)[1] <- "pitch_type"
 names(wheeler)[1] <- "pitch_type"
-
 
 velo_time(pitcher_name=deGrom)
 
