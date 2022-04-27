@@ -21,6 +21,8 @@ location_heatmap<- function(file =NULL, by_pitch_type = TRUE){
   low.color<- "lightblue1"
   high.color<- "black"
 
+  first <- str_trim(str_split(file$player_name[1], pattern = ",")[[1]][2])
+  last <- str_split(file$player_name[1], pattern = ",")[[1]][1]
 
 
   if(by_pitch_type==T){
@@ -31,7 +33,7 @@ location_heatmap<- function(file =NULL, by_pitch_type = TRUE){
       geom_hex(bins = 10)+
       scale_fill_gradient(low=low.color,high=high.color,trans="log10") +
       add_zone()+
-      labs(title = "Location Heatmap by Pitch",
+      labs(title = paste("Location Heatmap by Pitch from", first, last),
            x = "Location from Catcher's Perspective (ft)",
            y = "Location off the Ground (ft)")+
       facet_wrap(~pitch_type)
@@ -45,7 +47,7 @@ location_heatmap<- function(file =NULL, by_pitch_type = TRUE){
       ggplot(aes(x= plate_x, y= plate_z))+
       geom_hex(bins = 10)+
       scale_fill_gradient(low=low.color,high=high.color,trans="log10") +
-      labs(title = "Location Heatmap by Pitch",
+      labs(title = paste("Location Heatmap by Pitch from", first, last),
            x = "Location from Catcher's Perspective (ft)",
            y = "Location off the Ground (ft)")+
       add_zone()
