@@ -1,3 +1,5 @@
-test_that("multiplication works", {
-  expect_equal(2 * 2, 4)
+file = deGrom
+
+test_that("velocity is numeric", {
+  expect_type(file$release_speed, "double")
 })
