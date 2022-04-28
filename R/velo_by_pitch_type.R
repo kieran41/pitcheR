@@ -8,6 +8,8 @@
 #' @return ggplot graphic
 #'
 #' @export
+
+globalVariables(c("pfx_x", "pfx_z", "pitch_type", "average_x", "average_z"))
 velo_bp <- function(file = NULL) {
   file %>%
     ggplot(aes(x = release_speed))+

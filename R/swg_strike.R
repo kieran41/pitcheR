@@ -1,7 +1,7 @@
 
 ##function displays summary table of pitch type and swinging strike %, along with the velocity and spin rate
 ##for the pitch type
-
+globalVariables(c("pfx_x", "pfx_z", "pitch_type", "average_x", "average_z"))
 swg_strike <- function(file){
   player_table <- file %>%
   group_by(pitch_type) %>%

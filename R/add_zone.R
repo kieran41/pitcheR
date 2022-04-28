@@ -4,6 +4,7 @@
 #'
 #' @export
 #' @import ggplot2
+globalVariables(c("pfx_x", "pfx_z", "pitch_type", "average_x", "average_z"))
 
 add_zone <- function(Color = "black"){
   topKzone <- 3.5

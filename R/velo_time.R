@@ -1,4 +1,6 @@
 ##function to graph game by game average velocity of specified pitch type (default is fastball)
+
+globalVariables(c("pfx_x", "pfx_z", "pitch_type", "average_x", "average_z"))
 velo_time <- function(file, pitch = "FF"){
   first <- str_trim(str_split(file$player_name[1], pattern = ",")[[1]][2])
   last <- str_split(file$player_name[1], pattern = ",")[[1]][1]
