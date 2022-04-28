@@ -3,12 +3,14 @@
 #' @param file statcast file
 #'
 #' @import dplyr
+#' @import assertthat
 #'
 #' @return summary table
 #'
 #' @export
 globalVariables(c("pfx_x", "pfx_z", "pitch_type", "average_x", "average_z"))
 swg_strike <- function(file){
+  assertthat::assert_that(is.character(file$pitch_type))
   player_table <- file %>%
   group_by(pitch_type) %>%
     summarise(swginging_strike_per = length(which(description == "swinging_strike" | description == "swinging_strike_blocked"))/(length(which(description == "foul" | description == "hit_into_play" | description == "foul_tip" | description == "swinging_strike" | description == "swinging_strike_blocked"))),
@@ -17,5 +19,4 @@ swg_strike <- function(file){
 
   return(player_table)
 }
-
 

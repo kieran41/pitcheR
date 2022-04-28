@@ -6,14 +6,15 @@
 #' @import dplyr
 #' @import ggplot2
 #' @import lubridate
+#' @import stringr
 #'
 #' @return summary table
 #'
 #' @export
 globalVariables(c("pfx_x", "pfx_z", "pitch_type", "average_x", "average_z"))
 velo_time <- function(file, pitch = "FF"){
-  first <- str_trim(str_split(file$player_name[1], pattern = ",")[[1]][2])
-  last <- str_split(file$player_name[1], pattern = ",")[[1]][1]
+  first <- stringr::str_trim(str_split(file$player_name[1], pattern = ",")[[1]][2])
+  last <- stringr::str_split(file$player_name[1], pattern = ",")[[1]][1]
 
   velo_graph <- file %>%
     mutate(game_date == as_date(game_date)) %>%
