@@ -4,6 +4,7 @@
 #'
 #' @import ggplot2
 #' @import dplyr
+#' @import reshape2
 #'
 #' @return ggplot graphic
 #'
@@ -40,7 +41,7 @@ custom_heatmap<- function(file =NULL){
       rownames(loc.matrix) <- y.update
 
 
-      longData <- melt(loc.matrix)
+      longData <- reshape2::melt(loc.matrix)
 
       graphic.test <- ggplot(longData, aes(x = Var2, y = Var1)) +
                 geom_raster(aes(fill=value)) +

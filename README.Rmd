@@ -34,6 +34,6 @@ devtools::install_github("kieran41/pitcheR")
 This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
-library(pitcheR)
+#library(pitcheR)
 ## basic example code
 ```
