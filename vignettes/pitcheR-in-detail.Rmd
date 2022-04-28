@@ -1,0 +1,19 @@
+---
+title: "pitcheR-in-detail"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{pitcheR-in-detail}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(pitcheR)
+```
