@@ -1,6 +1,12 @@
-
-##function displays summary table of pitch type and swinging strike %, along with the velocity and spin rate
-##for the pitch type
+#' Take a statcast data set and acquire the swinging strike percentage
+#'
+#' @param file statcast file
+#'
+#' @import dplyr
+#'
+#' @return summary table
+#'
+#' @export
 globalVariables(c("pfx_x", "pfx_z", "pitch_type", "average_x", "average_z"))
 swg_strike <- function(file){
   player_table <- file %>%

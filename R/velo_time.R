@@ -1,5 +1,15 @@
-##function to graph game by game average velocity of specified pitch type (default is fastball)
-
+#' Take a statcast data set and plot aver velocity per game of a certai pitch type
+#'
+#' @param file statcast file
+#' @param pitch pitch type, default is FF
+#'
+#' @import dplyr
+#' @import ggplot2
+#' @import lubridate
+#'
+#' @return summary table
+#'
+#' @export
 globalVariables(c("pfx_x", "pfx_z", "pitch_type", "average_x", "average_z"))
 velo_time <- function(file, pitch = "FF"){
   first <- str_trim(str_split(file$player_name[1], pattern = ",")[[1]][2])
