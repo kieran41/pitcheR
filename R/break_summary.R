@@ -1,5 +1,11 @@
-#create a function that summarizes player stats (per player)
-
+#' Take a statcast data set and visualize horizontal and vertical break by pitch type
+#'
+#' @param file statcast file for specified player
+#' @import ggplot2
+#' @import dplyr
+#' @return ggplot graphic
+#'
+#' @export
 globalVariables(c("pfx_x", "pfx_z", "pitch_type", "average_x", "average_z"))
 
 break_func <- function(file = NULL){
