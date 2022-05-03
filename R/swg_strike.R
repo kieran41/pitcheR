@@ -4,7 +4,8 @@
 #'
 #' @import dplyr
 #' @return summary table
-#'
+#' @examples
+#' swg_strike(deGrom)
 #' @export
 globalVariables(c("pfx_x", "pfx_z", "pitch_type", "average_x", "average_z"))
 swg_strike <- function(file){

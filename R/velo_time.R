@@ -9,7 +9,8 @@
 #' @import stringr
 #'
 #' @return summary table
-#'
+#' @examples
+#' velo_time(deGrom)
 #' @export
 globalVariables(c("pfx_x", "pfx_z", "pitch_type", "average_x", "average_z"))
 velo_time <- function(file, pitch = "FF"){
