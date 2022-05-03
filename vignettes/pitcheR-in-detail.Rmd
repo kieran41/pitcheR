@@ -27,14 +27,14 @@ library(pitcheR)
 #Break Summary
 Break Summary Function:
 
-The break summary function, coded as "break_func()" returns a plot of the average break for each pitch type that the given pitcher has. Similar to all functions in the package, the only input the function requires is the standard csv statcast data file. The x-axis of the plot is the average horizontal break for the respective pitch, in feet. A negative value would indicate a break to the left, and positive value would indicate a break to the right. The y-axis is the vertical break for the respective pitch, also measured in feet. A positive value indicates an upward break, and a negative value indicates a downward break.
+The break summary function, coded as "break_func()" returns a plot of the average break for each pitch type that the given pitcher has. Similar to all functions in the package, the only input the function requires is the standard csv statcast data file. The x-axis is the average horizontal break for the respective pitch, in feet. A negative value would indicate a break to the left, and positive value would indicate a break to the right. The y-axis is the average vertical break for the respective pitch, also measured in feet. A positive value indicates an upward break, and a negative value indicates a downward break. Each line represents a different pitch type, the plot is also colored by pitch type.
 
 ```{r}
 break_summary <- break_func(file = deGrom)
 break_summary
 ```
 
-The above plot is the result of using the "break_func" function with the data file for DeGrom, as seen in the code above. This plot shows that DeGrom has 4 different pitch types (a link to the description of the pitch types can be found .....***** ). His fastball (pitch type FF) has the largest break, which breaks upwards and to the left. We can also see that all of his pitches break by different amounts and in different directions, and no two pitches follow the same line. 
+The above plot is the result of using the "break_func" function with the data file for DeGrom, as seen in the code above. This plot shows that DeGrom has 4 different pitch types (a link to the description of the pitch types can be found .....***** ). His fastball (pitch type FF) has the largest average break, which breaks upwards and to the left. We can also see that all of his pitches break, on average, by different amounts and in different directions, as no two pitches follow the same line. 
 
 #Location Heatmap
 
