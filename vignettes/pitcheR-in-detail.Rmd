@@ -19,8 +19,66 @@ library(pitcheR)
 ```
 
 
+<<<<<<< HEAD
 
 
-Break Summary Function:
 
-The break summary function, coded as "break_func()" returns a plot of the average break for each pitch type that the given pitcher has. Similar to all functions in the package, the only input the function requires is the standard csv statcast data file. The x-axis of the plot is the average horizontal break for the respective pitch, in feet. A negative value would indicate a break to the left, and positive value would indicate a break to the right. The y-axis is the vertical break for the respective pitch, also measured in feet. A positive value indicates an upward break, and a negative value indicates a downward break.
+=======
+#Break Summary
+
+
+
+#Location Heatmap
+
+The idea with this function is to provide the user with a simple summary of pitch location from their csv file.
+
+```{r}
+location_example <- location_heatmap(file = deGrom, by_pitch_type = TRUE)
+
+location_example
+```
+
+In this case, we are looking at Jacob deGrom's pitches from 2021 and where he threw them. From this graphic we are able to discern a few things quickly. First, his pitch usage varies by pitch type, and that his pitch location varies by pitch type. We notice that curve balls (CU) are his least used pitch. We can also quickly see that he favors a fastball (FF) up in the zone, and a slider(SL) low and out of the zone. It is useful to be able to quickly discern this infromation from one graphic.
+
+#Contact Location Heatmap
+
+Very similar to location heatmap, this function is used to provide the user with a summary of pitches thrown that were put into play.
+
+```{r}
+example1 <- contact_location_heatmap(file = deGrom, by_pitch_type = TRUE, hit.status = FALSE, min.exit.velocity =0.0)
+
+example1
+
+example2 <- contact_location_heatmap(file = deGrom, by_pitch_type = TRUE, hit.status = FALSE, min.exit.velocity =90.0)
+
+example2
+```
+
+Again, we take a look at deGrom's 2021 season. This time, the first graphi shows us where the pitches he throws get put into play. Again there are sparse data points for the Change up (CH) and Curve, but relevant information for the slider and fastball. The fastball appears to mirror his location heat map, but his sliders appear mostly to be put into play if they are in the zone. This strays a little from his location heatmap. 
+
+The second graphic shows balls put into play that were hit at least 90 mph. Here we can see that the slider is very rarely put into play with a hard contact when it is thrown outside of the zone. This can help us infer why deGrom may throw his slider out of the zone on his location heatmap. 
+
+
+
+#Custom Heatmap
+
+
+Custom heatmap provides a very similar service to location heatmap. The main difference is its utility in terms of baseball interpretations. Specifically, the zone is always split into a 3x3 grid, which is a common practice in the baseball pitching world. Thus, it is useful for smaller data sets, or subsetted data sets.
+
+```{r}
+library(dplyr)
+deGrom_FF_game_1 <- deGrom %>% 
+  filter(game_date == "2021-04-05",pitch_type=="FF")
+
+custom_heatmap(file = deGrom_FF_game_1)
+```
+Now this graph shows us where deGrom threw his fastballs in his first appearance of the 2021 season. We are now using a much smaller dataset, however this can help provide insight on a game to game basis. In his first start, he favored throwing fastballs primarily at the top or above the zone.
+
+
+
+#swing-Strike
+
+#Velo by Pitch Type
+
+#Velo Time
+>>>>>>> 3b0cee82cc991eaf7b71546ad169b2e86fcfa0a2
