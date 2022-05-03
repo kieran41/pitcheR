@@ -72,7 +72,7 @@
 </h1></div>
 <!-- badges: start -->
 <!-- badges: end -->
-<p>The goal of pitcheR is to …</p>
+<p>The goal of pitcheR is to analyze statcast data from MLB pitchers with summary tables and advanced graphics. Statcast data is not the normal baseball data you see on the back of baseball cards. The files that work with this package track many in-depth variables, such as spin rate and exact location, for every single pitch thrown by a given pitcher. Our package’s functionality will hopefully provide insights into MLB pitchers that standard data and graphs cannot give you.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -86,8 +86,18 @@
 </h2>
 <p>This is a basic example which shows you how to solve a common problem:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">pitcheR</span><span class="op">)</span>
-<span class="co">## basic example code</span></code></pre></div>
+<code class="sourceCode R"><span class="co">#library(pitcheR)</span>
+<span class="co">## basic example code</span>
+<span class="co">## IMPORTANT: all  input files must be the standard .csv statcast files downloaded from their website</span>
+
+<span class="co">#creates a plot displaying vertical and horizontal break by pitch type for Clayton Kershaw</span>
+<span class="co">#break_func(file = "kershaw.csv")</span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="extended-information">Extended Information<a class="anchor" aria-label="anchor" href="#extended-information"></a>
+</h2>
+<p>While it is not included in our package, there is a package called baseballr that allows you to scrape the exact files that go with our package. You are free to check out this package here:</p>
+<p><a href="https://billpetti.github.io/baseballr/" class="external-link uri">https://billpetti.github.io/baseballr/</a></p>
 </div>
 </div>
   </div>
