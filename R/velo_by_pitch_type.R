@@ -4,7 +4,8 @@
 #' @import ggplot2
 #' @import dplyr
 #' @return ggplot graphic
-#'
+#' @examples
+#' velo_bp(file = deGrom)
 #' @export
 
 globalVariables(c("pfx_x", "pfx_z", "pitch_type", "average_x", "average_z"))
