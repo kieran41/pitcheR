@@ -34,7 +34,7 @@ break_summary <- break_func(file = deGrom)
 break_summary
 ```
 
-
+The above plot is the result of using the "break_func" function with the data file for DeGrom, as seen in the code above. This plot shows that DeGrom has 4 different pitch types (a link to the description of the pitch types can be found .....***** ). His fastball (pitch type FF) has the largest break, which breaks upwards and to the left. We can also see that all of his pitches break by different amounts and in different directions, and no two pitches follow the same line. 
 
 #Location Heatmap
 
