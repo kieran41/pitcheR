@@ -21,7 +21,7 @@ contact_location_heatmap<- function(file =NULL, by_pitch_type = TRUE, hit.status
     warning('default file names')
   }
 
-  if(!as.numeric(min.exit.velocity)){
+  if(!is.numeric(min.exit.velocity)){
     warning("min.exit.velocity should be numeric value.")
     #return(NA)
   }
@@ -69,3 +69,4 @@ contact_location_heatmap<- function(file =NULL, by_pitch_type = TRUE, hit.status
   return(graphic)
 
 }
+

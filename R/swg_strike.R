@@ -3,8 +3,6 @@
 #' @param file statcast file
 #'
 #' @import dplyr
-#' @import assertthat
-#'
 #' @return summary table
 #'
 #' @export
