@@ -1,0 +1,13 @@
+---
+title: "pitcheR-coverage"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{pitcheR-coverage}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r}
+covr::package_coverage()
+```
+

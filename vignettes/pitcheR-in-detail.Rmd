@@ -84,7 +84,13 @@ Now this graph shows us where deGrom threw his fastballs in his first appearance
 
 
 
-#swing-Strike
+#Swing-Strike
+
+One of the more important metrics for a pitcher is the percentage of pitches missed by a better in which he swings. This function takes a statcast data file and calculates the swinging strike percentage for each pitch type for a given pitcher. The ouput is a table which contains this percentage for each pitch, as well as the respective speed and spin rate for said pitch type.
+```{r}
+swg_strike(deGrom)
+```
+This table pairs well with the break summary function as it tells us which pitches for a given pitcher are being swung at and missed the most. We can use this table and the graphics from break summary to infer what type of pitch movement induces the highest percentage of swings and misses.
 
 #Velo by Pitch Type
 The function "velo_bp" overlays density plots showing the density of pitch release speed, by the type of pitch. Similar to many of the other functions in this package, the only input needed is a 'statcast' data file. The x-axis is release speed, in mph, and the y-axis is density. 
@@ -95,4 +101,9 @@ Above, we can see the release speed of a pitch by pitch type for DeGrom's 2021 s
 
 
 #Velo Time
->>>>>>> 3b0cee82cc991eaf7b71546ad169b2e86fcfa0a2
+
+One of the growing interests in today's game is velocity of a pitch, specifically fastballs. This function works very well in conjunction with the velo_bp function. The output of this function is a graph of a pitcher's average velocity for a given pitch type on a per game basis.
+```{r}
+velo_time(deGrom)
+```
+This graph can tell us if a pitcher is consistent with his pitch velocity, or if perhaps he loses velocity per game over the course of the season.
