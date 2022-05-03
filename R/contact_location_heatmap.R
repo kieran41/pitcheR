@@ -10,6 +10,12 @@
 #'
 #' @return ggplot graphic
 #'
+#' @examples
+#' example1 <- contact_location_heatmap(file = deGrom, by_pitch_type = TRUE, hit.status = FALSE, min.exit.velocity =0.0)
+#' example1
+#' example2 <- contact_location_heatmap(file = deGrom, by_pitch_type = TRUE, hit.status = TRUE, min.exit.velocity =90.0)
+#' example2
+#'
 #' @export
 
 globalVariables(c("pfx_x", "pfx_z", "pitch_type", "average_x", "average_z"))
