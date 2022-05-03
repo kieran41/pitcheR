@@ -8,6 +8,10 @@
 #'
 #' @return ggplot graphic
 #'
+#' @example
+#' cust_heatmap <- custom_heatmap(file = deGrom)
+#' cust_heatmap
+#'
 #' @export
 
 globalVariables(c("pfx_x", "pfx_z", "pitch_type", "average_x", "average_z"))

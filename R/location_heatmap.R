@@ -8,6 +8,10 @@
 #'
 #' @return ggplot graphic
 #'
+#' @example
+#' location_example <- location_heatmap(file = deGrom)
+#' location_example
+#'
 #' @export
 
 globalVariables(c("pfx_x", "pfx_z", "pitch_type", "average_x", "average_z"))
