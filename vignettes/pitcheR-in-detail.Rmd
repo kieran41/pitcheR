@@ -25,6 +25,10 @@ library(pitcheR)
 
 =======
 #Break Summary
+Break Summary Function:
+
+The break summary function, coded as "break_func()" returns a plot of the average break for each pitch type that the given pitcher has. Similar to all functions in the package, the only input the function requires is the standard csv statcast data file. The x-axis of the plot is the average horizontal break for the respective pitch, in feet. A negative value would indicate a break to the left, and positive value would indicate a break to the right. The y-axis is the vertical break for the respective pitch, also measured in feet. A positive value indicates an upward break, and a negative value indicates a downward break.
+
 
 
 
