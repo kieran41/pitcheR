@@ -16,6 +16,7 @@ library(bslib)
 library(shiny)
 #library(pitcheR)
 
+
 theme_set(theme_minimal())
 # Define UI for application that draws a histogram
 ui <- fluidPage(
@@ -35,13 +36,27 @@ ui <- fluidPage(
     # Sidebar with a slider input for number of bins
     sidebarLayout(
         sidebarPanel(
-         selectInput("heatm","Choose preferred Heatmap",
-                     choices=c("Location Heatmap","Contact Heatmap","Custom Heatmap"),
+
+        selectInput("goption","General Option",
+                     choices = c("Upload a file","Use default"),
+                     selected = "Upload a file"),
+        #condition for filetype upload
+        conditionalPanel(condition = "input.goption=='Upload a file'",
+        fileInput("upload", NULL, buttonLabel = "Upload...", multiple = TRUE)),
+        #condition for filetype usedefault
+        #conditionalPanel(
+            #conditin="input.goption=='Use default'",
+         selectInput("dplayer","Default Players",
+                     choices = c("wheeler","deGrom")),
+
+         selectInput("heatm","Choose preferred Visualization",
+                     choices=c("Location Heatmap","Contact Heatmap","Custom Heatmap",
+                               "Velo Time","Velo BP","Break Func"),
                      selected = "Location Heatmap"
 
          ),
          radioButtons("table", "Request Table",
-                      choices = "Activate"
+                      choices = "Swg strike"
 
          )
         ),
@@ -50,35 +65,57 @@ ui <- fluidPage(
         mainPanel(
             tabsetPanel(
            tabPanel("Heatmaps",plotOutput("heatedm")),
-           tabPanel("Table",verbatimTextOutput("ptable"))
+           tabPanel("Table",tableOutput("ptable")
+           )
         )
     ))
 )
 
 # Define server logic required to draw a histogram
 server <- function(input, output){
+
 output$heatedm<- renderPlot({
     load(file='deGrom.rda')
     load(file='wheeler.rda')
     names(deGrom)[1] <- "pitch_type"
     names(wheeler)[1] <- "pitch_type"
 
+    inFile<- input$upload
+    if (is.null(inFile))
+        return(NULL)
+    newfile<- read.csv(inFile$datapath, header=T)
+    names(newfile)[1]<- "pitch_type"
+    #newfile<- newfile%>%
+        #filter(pitch_type == "SL")
+
     if(input$heatm=="Location Heatmap"){
-        location_heatmap(file = wheeler)
+        location_heatmap(file = newfile)
     }
         else if(input$heatm=="Contact Heatmap"){
             contact_location_heatmap(file = wheeler)
         }
-            else (custom_heatmap(file = deGrom))
+        else if(input$heatm=="Velo Time"){
+            velo_time(file = deGrom)
+        }
+        else if(input$heatm=="Velo BP"){
+            velo_bp(file = wheeler)
+    }
+        else if(input$heatm=="Break Func"){
+            break_func(file = newfile)
+    }
+     else (custom_heatmap(file = deGrom))
 
     #output$ptable<- renderPrint({
         #if (input$table=="Activate"){
             #kableExtra::kable(swg_strike(file= wheeler))}
     #})
+
 }
 
 )
-
+output$files <- renderTable(input$upload)
+output$ptable<- renderTable(
+    swg_strike(file= wheeler))
 }
 
 # Run the application
