@@ -17,7 +17,7 @@ library(shiny)
 #library(pitcheR)
 
 
-theme_set(theme_minimal())
+#theme_set(theme_minimal())
 # Define UI for application that draws a histogram
 ui <- fluidPage(
     theme = bs_theme(bootswatch = "minty"),
@@ -37,12 +37,12 @@ ui <- fluidPage(
     sidebarLayout(
         sidebarPanel(
 
-        selectInput("goption","General Option",
+        selectInput("goption","Data Option",
                      choices = c("Upload a file","Use default"),
                      selected = "Use default"),
         #condition for filetype upload
         conditionalPanel(condition = "input.goption=='Upload a file'",
-        fileInput("upload", NULL, buttonLabel = "Upload...", multiple = TRUE)),
+        fileInput("upload", "Select a .csv file",  buttonLabel = "Upload...", accept = ".csv", multiple = FALSE)),
         #condition for filetype usedefault
         #conditionalPanel(
             #conditin="input.goption=='Use default'",
@@ -102,6 +102,8 @@ server <- function(input, output){
     }
     else {
         inFile<- input$upload
+        if(is.null(inFile))
+            return("Please upload a .csv file")
         newfile<- read.csv(inFile$datapath, header=T)
         names(newfile)[1]<- "pitch_type"
 
@@ -127,8 +129,18 @@ server <- function(input, output){
 }
 
 )
-output$ptable<- renderTable(
-    swg_strike(file= wheeler))
+output$ptable<- renderTable({
+    if(input$goption=="Use default"){
+    swg_strike(file= wheeler)}
+    else{
+        inFile<- input$upload
+        if(is.null(inFile))
+            return("Please upload a .csv file")
+        newfile<- read.csv(inFile$datapath, header=T)
+        names(newfile)[1]<- "pitch_type"
+        swg_strike(file=newfile)
+    }
+})
 }
 
 # Run the application
