@@ -39,15 +39,15 @@ ui <- fluidPage(
 
         selectInput("goption","General Option",
                      choices = c("Upload a file","Use default"),
-                     selected = "Upload a file"),
+                     selected = "Use default"),
         #condition for filetype upload
         conditionalPanel(condition = "input.goption=='Upload a file'",
         fileInput("upload", NULL, buttonLabel = "Upload...", multiple = TRUE)),
         #condition for filetype usedefault
         #conditionalPanel(
             #conditin="input.goption=='Use default'",
-         selectInput("dplayer","Default Players",
-                     choices = c("wheeler","deGrom")),
+         #selectInput("dplayer","Default Players",
+                     #choices = c("wheeler","deGrom")),
 
          selectInput("heatm","Choose preferred Visualization",
                      choices=c("Location Heatmap","Contact Heatmap","Custom Heatmap",
@@ -64,7 +64,8 @@ ui <- fluidPage(
         # Show a plot of the generated distribution
         mainPanel(
             tabsetPanel(
-           tabPanel("Heatmaps",plotOutput("heatedm")),
+           tabPanel("Heatmaps",plotOutput("heatedm")
+                    ),
            tabPanel("Table",tableOutput("ptable")
            )
         )
@@ -73,47 +74,59 @@ ui <- fluidPage(
 
 # Define server logic required to draw a histogram
 server <- function(input, output){
+    output$heatedm<- renderPlot({
+        load(file='deGrom.rda')
+        load(file='wheeler.rda')
+        names(deGrom)[1] <- "pitch_type"
+        names(wheeler)[1] <- "pitch_type"
 
-output$heatedm<- renderPlot({
-    load(file='deGrom.rda')
-    load(file='wheeler.rda')
-    names(deGrom)[1] <- "pitch_type"
-    names(wheeler)[1] <- "pitch_type"
 
-    inFile<- input$upload
-    if (is.null(inFile))
-        return(NULL)
-    newfile<- read.csv(inFile$datapath, header=T)
-    names(newfile)[1]<- "pitch_type"
-    #newfile<- newfile%>%
-        #filter(pitch_type == "SL")
 
-    if(input$heatm=="Location Heatmap"){
-        location_heatmap(file = newfile)
-    }
+    if (input$goption=="Use default"){
+        if(input$heatm=="Location Heatmap"){
+            location_heatmap(file = wheeler)
+        }
         else if(input$heatm=="Contact Heatmap"){
-            contact_location_heatmap(file = wheeler)
+            contact_location_heatmap(file = deGrom)
         }
         else if(input$heatm=="Velo Time"){
             velo_time(file = deGrom)
         }
         else if(input$heatm=="Velo BP"){
             velo_bp(file = wheeler)
+        }
+        else if(input$heatm=="Break Func"){
+            break_func(file = deGrom)
+        }
+        else {custom_heatmap(file = wheeler)}
+    }
+    else {
+        inFile<- input$upload
+        newfile<- read.csv(inFile$datapath, header=T)
+        names(newfile)[1]<- "pitch_type"
+
+        if(input$heatm=="Location Heatmap"){
+        location_heatmap(file = newfile)
+    }
+        else if(input$heatm=="Contact Heatmap"){
+            contact_location_heatmap(file = newfile)
+        }
+        else if(input$heatm=="Velo Time"){
+            velo_time(file = newfile)
+        }
+        else if(input$heatm=="Velo BP"){
+            velo_bp(file = newfile)
     }
         else if(input$heatm=="Break Func"){
             break_func(file = newfile)
     }
-     else (custom_heatmap(file = deGrom))
+     else {custom_heatmap(file = newfile)}
+        }
 
-    #output$ptable<- renderPrint({
-        #if (input$table=="Activate"){
-            #kableExtra::kable(swg_strike(file= wheeler))}
-    #})
 
 }
 
 )
-output$files <- renderTable(input$upload)
 output$ptable<- renderTable(
     swg_strike(file= wheeler))
 }
