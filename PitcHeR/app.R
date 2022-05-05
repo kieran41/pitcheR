@@ -20,7 +20,8 @@ library(shiny)
 #theme_set(theme_minimal())
 # Define UI for application that draws a histogram
 ui <- fluidPage(
-    theme = bs_theme(bootswatch = "minty"),
+    shinythemes::themeSelector(),
+    #theme = bs_theme(bootswatch = "minty"),
     # Application title
     headerPanel(
 
