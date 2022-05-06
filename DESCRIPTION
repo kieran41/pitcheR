@@ -3,15 +3,10 @@ Type: Package
 Title: A Package for Pitcher Summary Graphics
 Version: 0.1.0
 Authors@R: 
-    person("Kieran", "Liming", , "kliming@iastate.edu", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-    person("Robert", "Castaneda", , "rcast15@iastate.edu", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-    person("Gabrielle", "Collins", , "glcoll16@iastate.edu", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-    person("Abigail", "Collins", , "avcoll16@iastate.edu", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Maintainer: The package maintainer <yourself@somewhere.net>
+    person("Kieran", "Liming", , "kliming@iastate.edu", role = c("aut", "cre"))
+    person("Robert", "Castaneda", , "rcast15@iastate.edu", role = c("aut", "cre"))
+    person("Gabrielle", "Collins", , "glcoll16@iastate.edu", role = c("aut", "cre"))
+    person("Abigail", "Collins", , "avcoll16@iastate.edu", role = c("aut", "cre"))
 Description: Creates graphics and summaries for pitcher Statcast data
 License: MIT + file LICENSE
 Encoding: UTF-8

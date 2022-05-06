@@ -17,9 +17,6 @@
 #' example2
 #'
 #' @export
-
-globalVariables(c("pfx_x", "pfx_z", "pitch_type", "average_x", "average_z"))
-
 contact_location_heatmap<- function(file =NULL, by_pitch_type = TRUE, hit.status = FALSE, min.exit.velocity =0.0){
 
   if(is.null(file)){

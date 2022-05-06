@@ -5,10 +5,8 @@
 #' @import dplyr
 #' @return ggplot graphic
 #' @examples
-#' example1 <- break_func(file = deGrom)
+#' break_func(file = deGrom)
 #' @export
-globalVariables(c("pfx_x", "pfx_z", "pitch_type", "average_x", "average_z"))
-
 break_func <- function(file = NULL){
   first <- stringr::str_trim(str_split(file$player_name[1], pattern = ",")[[1]][2])
   last <- stringr::str_split(file$player_name[1], pattern = ",")[[1]][1]

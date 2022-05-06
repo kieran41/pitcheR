@@ -1,12 +1,8 @@
 #' Creates tile layout for heatmaps
 #'
 #'
-#' @export
 #' @import ggplot2
-#'
-
-globalVariables(c("pfx_x", "pfx_z", "pitch_type", "average_x", "average_z"))
-
+#' @export
 create_grid<-function(file= NULL){
 
   #Creating the grid coordinates

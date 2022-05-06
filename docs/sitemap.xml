@@ -13,6 +13,9 @@
     <loc>/articles/index.html</loc>
   </url>
   <url>
+    <loc>/articles/pitcheR-coverage.html</loc>
+  </url>
+  <url>
     <loc>/articles/pitcheR-in-detail.html</loc>
   </url>
   <url>
@@ -22,6 +25,36 @@
     <loc>/index.html</loc>
   </url>
   <url>
+    <loc>/reference/add_zone.html</loc>
+  </url>
+  <url>
+    <loc>/reference/break_func.html</loc>
+  </url>
+  <url>
+    <loc>/reference/contact_location_heatmap.html</loc>
+  </url>
+  <url>
+    <loc>/reference/count_points.html</loc>
+  </url>
+  <url>
+    <loc>/reference/create_grid.html</loc>
+  </url>
+  <url>
+    <loc>/reference/custom_heatmap.html</loc>
+  </url>
+  <url>
     <loc>/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/location_heatmap.html</loc>
+  </url>
+  <url>
+    <loc>/reference/swg_strike.html</loc>
+  </url>
+  <url>
+    <loc>/reference/velo_bp.html</loc>
+  </url>
+  <url>
+    <loc>/reference/velo_time.html</loc>
   </url>
 </urlset>

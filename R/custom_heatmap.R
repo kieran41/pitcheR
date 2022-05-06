@@ -13,8 +13,6 @@
 #' cust_heatmap
 #'
 #' @export
-
-globalVariables(c("pfx_x", "pfx_z", "pitch_type", "average_x", "average_z"))
 custom_heatmap<- function(file =NULL){
 
 

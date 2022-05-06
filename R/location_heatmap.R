@@ -13,8 +13,6 @@
 #' location_example
 #'
 #' @export
-
-globalVariables(c("pfx_x", "pfx_z", "pitch_type", "average_x", "average_z"))
 location_heatmap<- function(file =NULL, by_pitch_type = TRUE){
 
   if(is.null(file)){

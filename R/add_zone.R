@@ -2,10 +2,8 @@
 #'
 #' @author Jim Albert
 #'
-#' @export
 #' @import ggplot2
-globalVariables(c("pfx_x", "pfx_z", "pitch_type", "average_x", "average_z"))
-
+#' @export
 add_zone <- function(Color = "black"){
   topKzone <- 3.5
   botKzone <- 1.6

@@ -7,7 +7,6 @@
 #' @examples
 #' swg_strike(deGrom)
 #' @export
-globalVariables(c("pfx_x", "pfx_z", "pitch_type", "average_x", "average_z"))
 swg_strike <- function(file){
   assertthat::assert_that(is.character(file$pitch_type))
   player_table <- file %>%
